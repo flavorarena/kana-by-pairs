@@ -1,11 +1,10 @@
 import 'package:flutter/material.dart';
 import '../widgets/menu_button.dart';
 
-import 'hiragana_screen.dart';
-import 'katakana_screen.dart';
 import 'flashcard_screen.dart';
 import 'writing_screen.dart';
 import 'review_screen.dart';
+import 'learn_screen.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
@@ -13,7 +12,23 @@ class HomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text('Kana By Pairs')),
+      appBar: AppBar(
+        automaticallyImplyLeading: false,
+
+        leading: Padding(
+          padding: const EdgeInsets.all(8),
+          child: Image.asset(
+            'images/kanalogo.png',
+            fit: BoxFit.contain,
+            filterQuality: FilterQuality.high,
+          ),
+        ),
+
+        title: Align(
+          alignment: Alignment.centerRight,
+          child: const Text('Kana By Pairs'),
+        ),
+      ),
       body: SafeArea(
         child: Padding(
           padding: const EdgeInsets.all(16),
@@ -22,25 +37,74 @@ class HomeScreen extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.stretch,
               children: [
-                MenuButton(
-                  text: 'Learn Hiragana',
-                  onPressed: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) => const HiraganaScreen(),
-                      ),
-                    );
-                  },
+                const Text(
+                  'Welcome Back!',
+                  style: TextStyle(fontSize: 32, fontWeight: FontWeight.bold),
                 ),
-                const SizedBox(height: 12),
+
+                const SizedBox(height: 20),
+
+                Row(
+                  children: [
+                    Expanded(
+                      child: Container(
+                        padding: const EdgeInsets.all(16),
+                        decoration: BoxDecoration(
+                          color: const Color(0xFF1E1E1E),
+                          borderRadius: BorderRadius.circular(20),
+                        ),
+                        child: const Column(
+                          children: [
+                            Text(
+                              '45%',
+                              style: TextStyle(
+                                fontSize: 28,
+                                fontWeight: FontWeight.bold,
+                              ),
+                            ),
+                            SizedBox(height: 8),
+                            Text('Kana Mastered'),
+                          ],
+                        ),
+                      ),
+                    ),
+
+                    const SizedBox(width: 16),
+
+                    Expanded(
+                      child: Container(
+                        padding: const EdgeInsets.all(16),
+                        decoration: BoxDecoration(
+                          color: const Color(0xFF1E1E1E),
+                          borderRadius: BorderRadius.circular(20),
+                        ),
+                        child: const Column(
+                          children: [
+                            Text(
+                              '12',
+                              style: TextStyle(
+                                fontSize: 28,
+                                fontWeight: FontWeight.bold,
+                              ),
+                            ),
+                            SizedBox(height: 8),
+                            Text('Reviews Due'),
+                          ],
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+
+                const SizedBox(height: 30),
+
                 MenuButton(
-                  text: 'Learn Katakana',
+                  text: 'Learn',
                   onPressed: () {
                     Navigator.push(
                       context,
                       MaterialPageRoute(
-                        builder: (context) => const KatakanaScreen(),
+                        builder: (context) => const LearnScreen(),
                       ),
                     );
                   },
