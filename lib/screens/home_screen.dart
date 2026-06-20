@@ -99,6 +99,19 @@ class HomeScreen extends StatelessWidget {
                 const SizedBox(height: 30),
 
                 MenuButton(
+                  text: 'Review',
+                  onPressed: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => const ReviewScreen(),
+                      ),
+                    );
+                  },
+                ),
+
+                const SizedBox(height: 12),
+                MenuButton(
                   text: 'Learn',
                   onPressed: () {
                     Navigator.push(
@@ -129,18 +142,6 @@ class HomeScreen extends StatelessWidget {
                       context,
                       MaterialPageRoute(
                         builder: (context) => const WritingScreen(),
-                      ),
-                    );
-                  },
-                ),
-                const SizedBox(height: 12),
-                MenuButton(
-                  text: 'Review',
-                  onPressed: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) => const ReviewScreen(),
                       ),
                     );
                   },

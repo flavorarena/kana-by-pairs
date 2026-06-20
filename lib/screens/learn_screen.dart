@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
-import '../widgets/menu_button.dart';
+
+import '../data/kana_data.dart';
+import '../widgets/kana_tile.dart';
 
 import 'hiragana_screen.dart';
-import 'katakana_screen.dart';
 
 class LearnScreen extends StatelessWidget {
   const LearnScreen({super.key});
@@ -12,44 +13,34 @@ class LearnScreen extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(title: const Text('Learn')),
       body: Center(
-        child: SingleChildScrollView(
-          child: IntrinsicWidth(
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: [
-                const Text(
-                  'Lessons Coming Soon',
-                  style: TextStyle(fontSize: 24),
-                ),
+        child: GridView.builder(
+          padding: const EdgeInsets.all(16),
 
-                const SizedBox(height: 12),
-                MenuButton(
-                  text: 'Learn Hiragana',
-                  onPressed: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) => const HiraganaScreen(),
-                      ),
-                    );
-                  },
-                ),
-                const SizedBox(height: 12),
-                MenuButton(
-                  text: 'Learn Katakana',
-                  onPressed: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) => const KatakanaScreen(),
-                      ),
-                    );
-                  },
-                ),
-              ],
-            ),
+          gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+            crossAxisCount: 5,
+            crossAxisSpacing: 12,
+            mainAxisSpacing: 12,
           ),
+
+          itemCount: kanaList.length,
+
+          itemBuilder: (context, index) {
+            final kana = kanaList[index];
+
+            return KanaTile(
+              kana: kana.hiragana,
+              unlocked: kana.unlocked,
+
+              onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => const HiraganaScreen(),
+                  ),
+                );
+              },
+            );
+          },
         ),
       ),
     );
